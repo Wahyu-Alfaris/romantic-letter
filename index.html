@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sepucuk Surat dari Hatiku ❤️</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="ambient-glow"></div>
+
+
+
+    <main class="scene-container">
+        <header class="scene-header" id="scene-header">
+            <h1 class="catchy-title font-cursive">Ada yang Mau Aku Obrolin...</h1>
+            <p class="catchy-subtitle font-serif-romantic">Buka suratnya yaa, khusus buat kamu ✨</p>
+        </header>
+
+        <div class="perspective-container">
+
+            <div id="envelope" class="envelope-wrapper pulse-ambient">
+
+                <div class="envelope-back">
+                    <div class="envelope-back-pattern"></div>
+                    <div class="envelope-back-shadow"></div>
+                </div>
+
+                <!-- Photobooth Film Strip -->
+                <div id="photobooth-strip" class="photobooth-strip" title="Sentuh untuk melihat kenangan manis kita" role="button"
+                    aria-label="Photobooth Film Strip">
+                    <div class="film-tap-badge"><i class="fa-solid fa-camera"></i> Foto Kita 📸</div>
+                    <div class="film-tape"></div>
+                    <div class="film-strip-inner">
+                        <div class="film-header">
+                            <span class="film-logo">✦ KISAH KITA ✦</span>
+                            <span class="film-cut-tag">SWEET MEMORY</span>
+                        </div>
+
+                        <div class="film-photos">
+                            <div class="film-frame">
+                                <div class="film-img-box">
+                                    <img src="photo1.jpg" alt="Jogging Pagi Bareng" class="film-img" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=400&q=80'">
+                                    <div class="film-gloss"></div>
+                                </div>
+                                <span class="film-frame-label font-handwriting">jogging pagi bareng 🏃‍♂️</span>
+                            </div>
+
+                            <div class="film-frame">
+                                <div class="film-img-box">
+                                    <img src="photo2.jpg" alt="Ngopi Santai di Kopken" class="film-img" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=400&q=80'">
+                                    <div class="film-gloss"></div>
+                                </div>
+                                <span class="film-frame-label font-handwriting">ngopi santai di kopken 🧋</span>
+                            </div>
+
+                            <div class="film-frame">
+                                <div class="film-img-box">
+                                    <img src="photo3.jpg" alt="Istirahat Abis Lari" class="film-img" onerror="this.src='https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=400&q=80'">
+                                    <div class="film-gloss"></div>
+                                </div>
+                                <span class="film-frame-label font-handwriting">istirahat abis lari 🍃</span>
+                            </div>
+                        </div>
+
+                        <div class="film-footer">
+                            <span class="film-date">HARI INI &bull; SELAMANYA</span>
+                            <div class="film-barcode">
+                                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Letter Inside -->
+                <div id="letter" class="letter-card">
+
+                    <div class="letter-top-bar">
+                        <div class="letter-accent-top">
+                            <span class="accent-line"></span>
+                            <i class="fa-solid fa-heart accent-heart"></i>
+                            <span class="accent-line"></span>
+                        </div>
+                        <button id="btnOpenPhotos" class="letter-photo-pill" title="Lihat Foto Kenangan Kita" type="button">
+                            <i class="fa-solid fa-camera"></i>
+                            <span>Foto Kita 📸</span>
+                        </button>
+                        <span class="page-indicator" id="pageIndicator">Halaman 1 dari 2</span>
+                        <button class="letter-close-btn" id="btnCloseEnvelopeTop" title="Tutup & Kunci Surat Kembali"
+                            aria-label="Tutup Surat">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <div id="letter-content" class="letter-content letter-scroll">
+
+                        <!-- Halaman 1: Kedekatan Lewat Chat & Rasa Nyaman -->
+                        <article class="letter-page active" data-page="1">
+                            <h2 class="letter-salutation font-cursive" id="displayRecipientGreeting">Hai kamu...</h2>
+                            <p class="letter-paragraph font-serif-romantic" id="letterTextP1">
+                                Gak kerasa ya, udah lumayan lama kita sering ngobrol. Walaupun kita jarang ketemu dan lebih sering ngobrol lewat WA, selalu ada aja hal seru dan cerita random yang bikin hari-hariku jadi lebih hidup.
+                            </p>
+                            <p class="letter-paragraph font-serif-romantic" id="letterTextP2">
+                                Jujur, tiap kali ada notif chat atau telepon dari kamu, rasanya mood aku langsung naik lagi. Tiap ngobrol sama kamu tuh selalu bikin nyaman, dan aku bisa jadi diri sendiri apa adanya.
+                            </p>
+                        </article>
+
+                        <!-- Halaman 2: Nembak Tulus Walau Jarang Ketemu -->
+                        <article class="letter-page" data-page="2">
+                            <p class="letter-paragraph font-serif-romantic" id="letterTextP3">
+                                Makin ke sini, rasa nyaman ini makin jelas. Walaupun kita jarang ketemu langsung, perasaan aku ke kamu beneran tulus dan bukan sekadar temen chat biasa lagi.
+                            </p>
+                            <p class="letter-paragraph font-serif-romantic" id="letterTextP4">
+                                Aku pengen kita bisa lebih dari ini. Pengen bisa nemenin hari-hari kamu, selalu ada buat dengerin cerita kamu, dan ngejalanin hari-hari ke depan bareng kamu.
+                            </p>
+                            
+                            <!-- Confession Interactive Area -->
+                            <div class="confession-container">
+                                <div class="confession-title font-cursive">Mau gak kita jadian dan jalanin bareng?</div>
+                                <p class="confession-subtitle font-serif-romantic">Gak usah pusing yaa, ini beneran tulus dari aku.</p>
+
+                                <div class="confession-action-box">
+                                    <button id="btnConfessYes" class="btn-confess-yes" aria-label="Mau, ayo jalanin bareng!">
+                                        <i class="fa-solid fa-heart pulse-icon"></i>
+                                        <span>Mau, ayo jalanin bareng! ✨</span>
+                                    </button>
+                                    <button id="btnConfessThink" class="btn-confess-think" aria-label="Bentar ya, mikir dulu">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>Bentar ya, mikir dulu 💭</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="letter-sign-section">
+                                <span class="letter-date" id="displayLetterDate">HARI INI &bull; DARI AKU</span>
+                                <div class="letter-sign-box">
+                                    <span class="letter-sign-text font-serif-romantic">Dari yang selalu nungguin chat kamu,</span>
+                                    <span class="letter-sign font-cursive" id="displaySenderSignature">Aku ❤️</span>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+
+                    <footer class="letter-footer">
+                        <button class="nav-btn" id="prevBtn" disabled aria-label="Halaman Sebelumnya">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            <span>Sebelumnya</span>
+                        </button>
+
+                        <button class="nav-btn close-btn" id="btnCloseEnvelope" aria-label="Tutup Surat">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>Tutup</span>
+                        </button>
+
+                        <button class="nav-btn primary" id="nextBtn" aria-label="Halaman Selanjutnya">
+                            <span id="nextBtnText">Selanjutnya</span>
+                            <i id="nextBtnIcon" class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </footer>
+
+                </div>
+
+                <div class="flap flap-left"></div>
+                <div class="flap flap-right"></div>
+                <div class="flap flap-bottom"></div>
+
+                <div id="top-flap" class="flap flap-top">
+                    <div class="flap-top-overlay"></div>
+                </div>
+
+                <div id="wax-seal" class="wax-seal" role="button" aria-label="Buka Surat Cinta">
+                    <div class="wax-seal-inner">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <p id="open-hint" class="open-hint font-serif-romantic">
+                <i class="fa-solid fa-sparkles"></i> Sentuh segel lilin untuk buka suratnya ya ✨
+            </p>
+
+        </div>
+    </main>
+
+    <!-- Celebration Modal (When She Says YES) -->
+    <div id="celebrationModal" class="celebration-overlay">
+        <div class="celebration-card">
+            <div class="celebration-ribbon font-cursive">Kita Jalanin Bareng 🤍</div>
+            
+            <div class="celebration-heart-avatar">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+
+            <h2 class="celebration-title font-cursive">Senang Banget, Beneran 😊</h2>
+            <p class="celebration-couple font-serif-romantic" id="celebrationCoupleNames">Mulai hari ini, kita jalanin pelan-pelan bareng yaa ✨</p>
+            
+            <p class="celebration-text font-serif-romantic">
+                Makasih ya udah mau jalanin bareng aku. Santai aja, kita jalanin pelan-pelan senyamannya kita berdua. Yang penting saling support, saling jaga, dan tetep asyik kayak biasanya. Senang banget akhirnya bisa resmi bareng kamu.
+            </p>
+
+            <div class="celebration-date-badge font-handwriting" id="celebrationDateBadge">
+                Momen Spesial: Hari Ini
+            </div>
+
+            <div class="celebration-actions">
+                <a id="btnShareWhatsApp" class="action-btn-wa" href="https://web.whatsapp.com/send?phone=62895320372952" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>Kirim Kabar ke WA Aku 💌</span>
+                </a>
+                
+                <button id="btnVirtualHug" class="action-btn-hug">
+                    <i class="fa-solid fa-hands-holding-child"></i>
+                    <span>Kirim Peluk Hangat 🤗</span>
+                </button>
+
+                <button id="btnCloseCelebration" class="action-btn-close">
+                    <span>Kembali ke Surat 📖</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thoughtful / Consideration Modal (When She Needs Time) -->
+    <div id="thinkModal" class="think-overlay">
+        <div class="think-card">
+            <div class="think-badge font-cursive">Santai Aja Ya 🤍</div>
+            
+            <div class="think-avatar">
+                <i class="fa-solid fa-hourglass-half"></i>
+            </div>
+
+            <h2 class="think-title font-cursive">Gak Usah Buru-buru 😊</h2>
+            
+            <p class="think-text font-serif-romantic">
+                Take your time yaa, gak usah ngerasa gak enak atau kepikiran. Yang paling penting kamu nyaman, aku gak mau maksain apa pun kok.
+            </p>
+            <p class="think-subtext font-serif-romantic">
+                Mau gimana pun nanti, kita tetep asyik kayak biasa yaa. Kapan pun kamu siap ngobrolin ini, kabar-kabarin aja. 🌸
+            </p>
+
+            <div class="think-actions">
+                <a id="btnShareWaThink" class="action-btn-wa-soft" href="https://web.whatsapp.com/send?phone=62895320372952" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>Kabar-kabarin di WA Ya 💬</span>
+                </a>
+                
+                <button id="btnCloseThink" class="action-btn-close">
+                    <span>Kembali ke Surat 📖</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Photobooth Modal (Never cut off, 100% full view) -->
+    <div id="photoModal" class="photo-modal-overlay" role="dialog" aria-modal="true" aria-label="Foto Kenangan Kita">
+        <div class="photo-modal-backdrop" id="photoModalBackdrop"></div>
+        <div class="photo-modal-content">
+            <button id="btnClosePhotoModal" class="photo-modal-close" aria-label="Tutup Foto">&times;</button>
+            <div class="photo-modal-strip-wrap">
+                <div class="photobooth-strip modal-strip">
+                    <div class="film-tape"></div>
+                    <div class="film-strip-inner">
+                        <div class="film-header">
+                            <span class="film-logo">✦ KISAH KITA ✦</span>
+                            <span class="film-cut-tag">SWEET MEMORY</span>
+                        </div>
+
+                        <div class="film-photos">
+                            <div class="film-frame">
+                                <div class="film-img-box">
+                                    <img src="photo1.jpg" alt="Jogging Pagi Bareng" class="film-img" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=400&q=80'">
+                                    <div class="film-gloss"></div>
+                                </div>
+                                <span class="film-frame-label font-handwriting">jogging pagi bareng 🏃‍♂️</span>
+                            </div>
+
+                            <div class="film-frame">
+                                <div class="film-img-box">
+                                    <img src="photo2.jpg" alt="Ngopi Santai di Kopken" class="film-img" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=400&q=80'">
+                                    <div class="film-gloss"></div>
+                                </div>
+                                <span class="film-frame-label font-handwriting">ngopi santai di kopken 🧋</span>
+                            </div>
+
+                            <div class="film-frame">
+                                <div class="film-img-box">
+                                    <img src="photo3.jpg" alt="Istirahat Abis Lari" class="film-img" onerror="this.src='https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=400&q=80'">
+                                    <div class="film-gloss"></div>
+                                </div>
+                                <span class="film-frame-label font-handwriting">istirahat abis lari 🍃</span>
+                            </div>
+                        </div>
+
+                        <div class="film-footer">
+                            <span class="film-date">HARI INI &bull; SELAMANYA</span>
+                            <div class="film-barcode">
+                                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="photo-modal-hint font-serif-romantic">Ketuk di luar atau tombol silang untuk menutup 🌸</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
